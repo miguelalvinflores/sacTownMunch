@@ -15,12 +15,17 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    email:{
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        isEmail: true,
         len: [3, 256]
       },
+    },
+    profile_pic_url: {
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
@@ -45,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Restaurant, { foreignKey: 'userId', onDelete:'cascade', hooks: true })
   };
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
