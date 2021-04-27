@@ -17,6 +17,9 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <Switch>
+        <Route path='/' exact >
+
+        </Route>
         <Route path='/login'>
           <LoginFormPage />
         </Route>

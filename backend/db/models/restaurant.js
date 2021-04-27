@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     defaultScope: {
       attributes: {
-        exclude: ['createdAt','updatedAt'],
+        exclude: ['updatedAt'],
       },
     },
     scopes: {
@@ -50,5 +50,11 @@ module.exports = (sequelize, DataTypes) => {
     return await Restaurant.scope('currentRestaurant').findByPk(id);
   };
 
+  Restaurant.getTenMostRecent = async function() {
+    return await Restaurant.findAll({
+      limit: 10,
+      order: [['createdAt', 'DESC']]
+    });
+  }
   return Restaurant;
 };
