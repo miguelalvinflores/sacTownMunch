@@ -203,12 +203,7 @@ module.exports = {
           ratingsArr.push(rating)
         }
       }
-      // inserting rating seeders
-    // const ratings = await queryInterface.bulkInsert(
-    //     "Ratings",
-    //     ratingsArr,
-    //     { returning: true }
-    //   );
+      // Final seeder formatted differntly
     return queryInterface.bulkInsert(
       'Ratings',
       ratingsArr,
