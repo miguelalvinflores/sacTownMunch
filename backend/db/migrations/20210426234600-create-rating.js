@@ -27,7 +27,8 @@ module.exports = {
         references: {model:'Restaurant'},
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
