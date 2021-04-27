@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isDate: true,
-        isAfter: Date.now()+(86400*1000),
+        isAfter: Date.now(),
       },
     },
     number_of_people: {
