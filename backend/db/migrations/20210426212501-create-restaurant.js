@@ -12,6 +12,10 @@ module.exports = {
         type: Sequelize.STRING(60),
         allowNull: false,
       },
+      address: {
+        type: Sequelize.STRING(200),
+        allowNull: false,
+      },
       photo_url: {
         type: Sequelize.TEXT,
         allowNull: false,

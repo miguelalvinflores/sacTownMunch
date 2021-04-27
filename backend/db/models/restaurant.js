@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(60),
       allowNull: false,
     },
+    address: {
+      type: Sequelize.STRING(200),
+      allowNull: false,
+    },
     photo_url: {
       type: DataTypes.TEXT,
       allowNull: false,
