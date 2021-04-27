@@ -28,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isDate: true,
-        isAfter: Date.now(),
       }
     },
   }, {});

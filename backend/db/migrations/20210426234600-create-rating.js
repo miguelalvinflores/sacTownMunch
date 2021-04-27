@@ -24,7 +24,7 @@ module.exports = {
       restaurant_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model:'Restaurant'},
+        references: {model:'Restaurants'},
       },
       date: {
         type: Sequelize.DATE,
