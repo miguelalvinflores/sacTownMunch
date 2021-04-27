@@ -3,12 +3,14 @@ const faker = require('faker');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     // USER SEEDERS
       // inserting user seeders with demo pre-defined
     const usersArray = [
       {
         email: 'demo@user.io',
+        firstName: 'Demo',
+        lastName: 'Lition',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
         profile_pic_url: faker.image.avatar(),
@@ -42,7 +44,7 @@ module.exports = {
       // creating restaurant array
     const restaurantsArray = [
       {
-        restaurant_name: `${usersArray[2].lastName}'s Kitchen`,
+        restaurant_name: `${users[2].lastName}'s Kitchen`,
         address: '1595 Eureka Rd Roseville, CA 95661',
         photo_url: 'https://resizer.otstatic.com/v2/photos/wide-huge/3/27776884.jpg',
         summary: `A Spectrum of Contemporary Food`,
@@ -102,11 +104,11 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        restaurant_name: `${user[4].firstName} ${user[4].lastName}'s American Grill - Roseville`,
+        restaurant_name: `${users[4].lastName}'s American Grill - Roseville`,
         address: '1455 Eureka Rd. Suite 100 Roseville, CA 95661',
         photo_url: 'https://resizer.otstatic.com/v2/photos/wide-huge/1/23838434.jpg',
         summary: 'Classic American Fare',
-        full_description: `Taste the difference high-quality ingredients make in every succulent bite of our hand-cut filet mignon, signature “brick” chicken, or sustainable cedar plank steelhead served at ${user[4].firstName} ${user[4].lastName}’s American Grill in Roseville. Located in Stone Point, an outdoor shopping plaza within the Sacramento metropolitan area, we serve classic American fare set to a higher standard. Our polished yet welcoming dining room is ideal for business lunches, special occasions, or date nights.`,
+        full_description: `Taste the difference high-quality ingredients make in every succulent bite of our hand-cut filet mignon, signature “brick” chicken, or sustainable cedar plank steelhead served at ${users[4].firstName} ${users[4].lastName}’s American Grill in Roseville. Located in Stone Point, an outdoor shopping plaza within the Sacramento metropolitan area, we serve classic American fare set to a higher standard. Our polished yet welcoming dining room is ideal for business lunches, special occasions, or date nights.`,
         owner_id: 4,
         createdAt: faker.date.past(),
         updatedAt: new Date(),
@@ -122,11 +124,11 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        restaurant_name: `${user[4].firstName}'s The Steakhouse - Sacramento`,
+        restaurant_name: `${users[4].firstName}'s The Steakhouse - Sacramento`,
         address: '621 Capitol Mall Sacramento, CA 95814',
         photo_url: 'https://resizer.otstatic.com/v2/photos/wide-huge/2/41717143.jpg',
         summary: 'The Best Steak… Anywhere.',
-        full_description: `What began in Chicago in 1978 is now one of the most award-winning steakhouses around. For over 30 years, ${user[4].firstName}'s The Steakhouse has been on a mission to provide "The Best Steak… Anywhere." Focusing on quality, consistency and genuine hospitality, ${user[4].firstName}'s seeks to provide not only memorable cuisine, but a memorable experience. With fresh, succulent seafood and famed USDA prime-aged steak, it's no surprise that Morton's has thrilled diners all over the world. For a glimpse of a higher standard of steakhouse, come see the legendary Morton's experience for yourself.`,
+        full_description: `What began in Chicago in 1978 is now one of the most award-winning steakhouses around. For over 30 years, ${users[4].firstName}'s The Steakhouse has been on a mission to provide "The Best Steak… Anywhere." Focusing on quality, consistency and genuine hospitality, ${users[4].firstName}'s seeks to provide not only memorable cuisine, but a memorable experience. With fresh, succulent seafood and famed USDA prime-aged steak, it's no surprise that Morton's has thrilled diners all over the world. For a glimpse of a higher standard of steakhouse, come see the legendary Morton's experience for yourself.`,
         owner_id: 4,
         createdAt: faker.date.past(),
         updatedAt: new Date(),
@@ -142,11 +144,11 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        restaurant_name: `${user[5].firstName} ${user[5].lastName}'s SteakHouse`,
+        restaurant_name: `${users[5].firstName} ${users[5].lastName}'s SteakHouse`,
         address: '501 Pavilions Lane Sacramento, CA 95825',
         photo_url: 'https://resizer.otstatic.com/v2/photos/wide-huge/1/23872500.jpg',
         summary: 'All-American Steak House',
-        full_description: `${user[5].firstName} ${user[5].lastName}'s Steak House in Sacramento, CA serves the finest USDA Prime beef available, broiled at 1,800° and served on 500° plates, so your steak stays hot, juicy and delicious from first bite to last. Enjoy our New Orleans-inspired appetizers, USDA Prime steaks, fresh seafood, signature side dishes and homemade desserts. All this while you enjoy our warm, inviting atmosphere and ${user[5].firstName} ${user[5].lastName}’s genuine hospitality. So whether you’re a regular or have just been wondering what all the buzz is about, ${user[5].firstName} ${user[5].lastName}'s is the perfect excuse to enjoy the perfect night out. Dinner is served nightly, reservations are suggested and private dining and offsite catering may be arranged.`,
+        full_description: `${users[5].firstName} ${users[5].lastName}'s Steak House in Sacramento, CA serves the finest USDA Prime beef available, broiled at 1,800° and served on 500° plates, so your steak stays hot, juicy and delicious from first bite to last. Enjoy our New Orleans-inspired appetizers, USDA Prime steaks, fresh seafood, signature side dishes and homemade desserts. All this while you enjoy our warm, inviting atmosphere and ${users[5].firstName} ${users[5].lastName}’s genuine hospitality. So whether you’re a regular or have just been wondering what all the buzz is about, ${users[5].firstName} ${users[5].lastName}'s is the perfect excuse to enjoy the perfect night out. Dinner is served nightly, reservations are suggested and private dining and offsite catering may be arranged.`,
         owner_id: 5,
         createdAt: faker.date.past(),
         updatedAt: new Date(),
@@ -190,13 +192,14 @@ module.exports = {
       }
       // creating three ratings for each restaurant
     for (let i = 0; i < 12; i++) {
-        const restaurant = restaurants[i];
+        let restaurant = restaurants[i];
         for( let j = 0; j < 3; j++ ) {
           let rating = {
             comment: commentMaker(),
-            rating: Math.floor(Math.random() * 2) + 3,
+            rating: Math.floor(Math.random() * 3) + 3,
             user_id: users[((i + j) % 10) + 5].id ,
             restaurant_id: restaurant.id,
+            date: faker.date.past(),
             createdAt: faker.date.past(),
             updatedAt: new Date(),
           }
@@ -211,7 +214,7 @@ module.exports = {
     );
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete("Ratings", null, {});
     await queryInterface.bulkDelete("Restaurants", null, {});
     return queryInterface.bulkDelete('Users', null, {});
