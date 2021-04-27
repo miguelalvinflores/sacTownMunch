@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
   up: (queryInterface, Sequelize) => {
     // USER SEEDERS
+      // inserting user seeders with demo pre-defined
     const usersArray = [
       {
         email: 'demo@user.io',
@@ -14,7 +15,8 @@ module.exports = {
         createdAt: faker.date.past(), updatedAt: new Date(),
       }
     ]
-    for (let i = 0; i < 9; i++) {
+      // creating rest of user seeder (15 total)
+    for (let i = 0; i < 14; i++) {
       const firstName = faker.name.firstName()
       const lastName = faker.name.lastName()
       const user = {
@@ -29,6 +31,7 @@ module.exports = {
       }
       usersArray.push(user);
     }
+      // inserting user seeders
     const users = await queryInterface.bulkInsert(
       "Users",
       usersArray,
@@ -36,6 +39,7 @@ module.exports = {
     );
 
     // RESTAURANT SEEDERS
+      // creating restaurant array
     const restaurantsArray = [
       {
         restaurant_name: `${usersArray[2].lastName}'s Kitchen`,
@@ -158,20 +162,63 @@ module.exports = {
         updatedAt: new Date(),
       },
     ];
-
-    const products = await queryInterface.bulkInsert(
+      // inserting restaurant seeders
+    const restaurants = await queryInterface.bulkInsert(
       "Restaurants",
       restaurantsArray,
       { returning: true }
     );
 
-    // REVIEWS SEEDERS
-
-
-    return queryInterface.bulkInsert('Users', usersArray, {});
+    // RATING SEEDERS
+      // initiate ratings array
+    const ratingsArr = [];
+      // "random" comment creator
+    const commentMaker = () => {
+        const randNum = Math.floor(Math.random() * 9);
+        const comments = [
+          `This place is so ${faker.commerce.productAdjective()}`,
+          `Always enough space between patrons, a wide range of table sizes`,
+          `Flavor was off, didn't wake up with any sickness. Willing to go there again 👍`,
+          `I cannot believe we were able to dine here for $${(Math.floor(Math.random() * 100))} a plate.`,
+          `Hands down best Ranch I've ever had, they are seriously underpricing their ranch.`,
+          `Real authentic, speedy service, sanitary tables and bathroom`,
+          `Loved the chicken`,
+          `Real authentic, speedy service, sanitary tables and bathroom`,
+          `Great place to spend a Friday night`
+        ]
+        return comments[randNum];
+      }
+      // creating three ratings for each restaurant
+    for (let i = 0; i < 12; i++) {
+        const restaurant = restaurants[i];
+        for( let j = 0; j < 3; j++ ) {
+          let rating = {
+            comment: commentMaker(),
+            rating: Math.floor(Math.random() * 2) + 3,
+            user_id: users[((i + j) % 10) + 5].id ,
+            restaurant_id: restaurant.id,
+            createdAt: faker.date.past(),
+            updatedAt: new Date(),
+          }
+          ratingsArr.push(rating)
+        }
+      }
+      // inserting rating seeders
+    // const ratings = await queryInterface.bulkInsert(
+    //     "Ratings",
+    //     ratingsArr,
+    //     { returning: true }
+    //   );
+    return queryInterface.bulkInsert(
+      'Ratings',
+      ratingsArr,
+      { returning: true }
+    );
   },
 
   down: (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete("Ratings", null, {});
+    await queryInterface.bulkDelete("Restaurants", null, {});
     return queryInterface.bulkDelete('Users', null, {});
-  }
+  },
 };
