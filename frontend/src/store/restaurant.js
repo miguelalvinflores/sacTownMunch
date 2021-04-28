@@ -7,7 +7,7 @@ const load = list => ({
 
 export const getRestaurants = () => async dispatch => {
   const res = await fetch(`/api/restaurants`);
-  console.log("fetch api/restaurant", res)
+  // console.log("fetch api/restaurant", res)
   if (res.ok) {
     const list = await res.json();
     dispatch(load(list));

@@ -56,7 +56,7 @@ module.exports = {
       {
         restaurant_name: 'Buca di Beppo - Sacramento',
         address: '1249 Howe Ave Sacramento, CA 95825',
-        photo_url: 'https://images.otstatic.com/prod/23837001/1/medium.jpg',
+        photo_url: 'https://resizer.otstatic.com/v2/photos/wide-medium/1/41920771.jpg',
         summary: 'Classic Italian Restaurant',
         full_description: 'If you are looking for an Italian Restaurant in Sacramento, CA then come to Buca. Our Italian Restaurant serves Authentic Family Style Italian Food. Work up an appetite on the American River or on the rides at the California State Fair, then head over to the corner of Howe Avenue and Hurley Way for the best Italian food in Sacramento, CA. Known for our family style portions, you’ll know that no matter the size of your appetite, you won’t be going home hungry! We want all of our guests to feel like family, so we feed them like family. Even though we serve hundreds of delicious Italian pastas, entrees, and pizzas every day for lunch and dinner, everyone in Sacramento keeps coming back for more. We’re also the top destination for special events. Our semi-private dining rooms are perfect for all of your celebrations and we also offer amazing catering options. No one knows authentic Italian food better than everyone’s favorite Italian restaurant, Buca di Beppo. Come in to join us for a meal today and see why we’re the best Italian restaurant in Sacramento.',
         owner_id: 2,
@@ -66,7 +66,7 @@ module.exports = {
       {
         restaurant_name: 'Piatti - Sacramento',
         address: '571 Pavilions Lane Sacramento, CA 95825',
-        photo_url: 'https://images.otstatic.com/prod/26560328/1/medium.jpg',
+        photo_url: 'https://resizer.otstatic.com/v2/photos/wide-medium/1/23698969.jpg',
         summary: 'Italian Trattoria',
         full_description: `Piatti reflects the warm and welcoming family atmosphere of an Italian trattoria. Piatti has a rustic charm and friendly feel that is designed with character and ambiance. The cuisine reflects the style of the Italians, creating simple, flavorful dishes from the day's best and freshest ingredients. Piatti is the ideal venue for private parties, receptions and corporate groups.`,
         owner_id: 2,
@@ -86,7 +86,7 @@ module.exports = {
       {
         restaurant_name: 'Zocalo Midtown',
         address: '1801 Capitol Ave Sacramento, CA 95811',
-        photo_url: 'https://images.otstatic.com/prod1/41870259/1/medium.jpg',
+        photo_url: 'https://resizer.otstatic.com/v2/photos/wide-medium/1/24904320.jpg',
         summary: 'Fine Mexican cuisine',
         full_description: 'Kid and walk-in friendly, great for groups, and a celebration destination known for its fine Mexican cuisine, happy hour, and craft cocktails—Zocalo has been a staple of the Midtown and Sacramento dining scene for over twelve years. Offered in a beautifully refurbished 1920s automobile dealership decorated with original artwork from Tlaquepaque, Mexico—Zocalo’s warm hospitality, fresh regional Mexican food, private dining, and commitment to customer service are designed to transform the ordinary act of eating into an extraordinary and memorable experience.',
         owner_id: 3,
