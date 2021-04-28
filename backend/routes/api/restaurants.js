@@ -12,6 +12,11 @@ router.get('/', asyncHandler(async function(_req, res) {
   return res.json(restaurants);
 }))
 
+router.get('/:id', asyncHandler(async function(req, res) {
+  const restaurant = await Restaurant.getCurrentRestaurantById(req.params.id);
+  return res.json(restaurant);
+}))
+
 const validateNewRestaurant = [
   check
 ];
