@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     Restaurant.hasMany(models.Rating, {foreignKey: 'restaurant_id'})
     Restaurant.hasMany(models.Favorite, {foreignKey: 'restaurant_id'})
   };
-  Restaurant.getCurrentRestaurantById = async function (id) {
+  Restaurant.getCurrentRestaurant = async function (id) {
     return await Restaurant.scope('currentRestaurant').findByPk(id);
   };
 

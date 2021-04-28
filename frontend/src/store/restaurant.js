@@ -1,9 +1,15 @@
 const LOAD = "restaurant/LOAD";
+const ADD_ONE = "restaurant/ADD_ONE";
 
 const load = list => ({
   type: LOAD,
   list,
 });
+
+const addOneRestaurant = restaurant => ({
+  type: ADD_ONE,
+  restaurant,
+})
 
 export const getRestaurants = () => async dispatch => {
   const res = await fetch(`/api/restaurants`);
@@ -13,6 +19,15 @@ export const getRestaurants = () => async dispatch => {
     dispatch(load(list));
   }
 };
+
+export const  getOneRestaurant = id => async dispatch => {
+  const res = await fetch(`api/restaurant/${id}`);
+
+  if (res.ok) {
+    const restaurant = await res.json();
+    dispatch(addOneRestaurant(restaurant));
+  }
+}
 
 const initialState = {
   list: [],
@@ -37,6 +52,25 @@ export default function restaurantReducer(state = initialState, action) {
         ...state,
         list: sortList(action.list),
       }
+    }
+    case ADD_ONE: {
+      if (!state[action.restaurant.id]) {
+        const newState = {
+          ...state,
+          [action.restaurant.id]: action.restaurant
+        };
+        const restaurantList = newState.list.map(id => newState[id]);
+        restaurantList.push(action.restaurant);
+        newState.list = sortList(restaurantList);
+        return newState;
+      }
+      return {
+        ...state,
+        [action.restaurant.id]: {
+        ...state[action.restaurant.id],
+        ...action.restaurant,
+        }
+      };
     }
     default:
       return state;

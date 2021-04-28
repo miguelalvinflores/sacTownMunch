@@ -13,7 +13,7 @@ router.get('/', asyncHandler(async function(_req, res) {
 }))
 
 router.get('/:id', asyncHandler(async function(req, res) {
-  const restaurant = await Restaurant.getCurrentRestaurantById(req.params.id);
+  const restaurant = await Restaurant.getCurrentRestaurant(req.params.id);
   return res.json(restaurant);
 }))
 
