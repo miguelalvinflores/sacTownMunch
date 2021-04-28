@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     address: {
-      type: Sequelize.STRING(200),
+      type: DataTypes.STRING(200),
       allowNull: false,
     },
     photo_url: {

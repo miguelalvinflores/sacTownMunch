@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async function(_req, res) {
   const restaurants = await Restaurant.getTenMostRecent();
+  console.log("GET api/restaurant", restaurants)
   return res.json(restaurants);
 }))
 

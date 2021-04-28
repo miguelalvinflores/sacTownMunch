@@ -7,6 +7,7 @@ const load = list => ({
 
 export const getRestaurants = () => async dispatch => {
   const res = await fetch(`/api/restaurants`);
+  console.log("fetch api/restaurant", res)
   if (res.ok) {
     const list = await res.json();
     dispatch(load(list));
@@ -24,7 +25,7 @@ const sortList = (list) => {
   }).map((restaurant) => restaurant.id)
 }
 
-const restaurantReducer = (state = initialState, action) => {
+export default function restaurantReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD: {
       const allRestaurants = {};
@@ -37,5 +38,7 @@ const restaurantReducer = (state = initialState, action) => {
         list: sortList(action.list),
       }
     }
+    default:
+      return state;
   }
 }
