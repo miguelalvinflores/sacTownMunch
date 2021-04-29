@@ -20,7 +20,7 @@ export const getRestaurants = () => async dispatch => {
   }
 };
 
-export const  getOneRestaurant = id => async dispatch => {
+export const getOneRestaurant = id => async dispatch => {
   const res = await fetch(`api/restaurant/${id}`);
 
   if (res.ok) {

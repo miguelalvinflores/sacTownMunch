@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import SplashPage from './components/SplashPage';
+import RestaurantDetailsPage from './components/RestaurantDetailsPage';
 import * as sessionActions from './store/session';
 import Navigation from "./components/Navigation";
 
@@ -20,6 +21,9 @@ function App() {
       <Switch>
         <Route path='/' exact >
           <SplashPage />
+        </Route>
+        <Route path='/restaurants/:restaurantId'>
+          <RestaurantDetailsPage />
         </Route>
         <Route path='/login'>
           <LoginFormPage />

@@ -27,6 +27,9 @@ export default function RestaurantDetailsPage() {
         <div>
           <h1 className={`restaurant-detail__title`}>{restaurant.restaurant_name}</h1>
         </div>
+        <div className={"restaurant__entry-image"}>
+          <img src={restaurant.photo_url} alt={restaurant.restaurant_name}/>
+        </div>
       </div>
     </div>
   );

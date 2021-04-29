@@ -26,8 +26,8 @@ export default function SplashPage() {
       <div className={'container'} >
         {restaurants.map((restaurant) => {
           return (
-              <div className={"container__restaurant"}>
-                <NavLink key={restaurant.restaurant_name} to={`/restuarants/${restaurant.id}`} style={{textDecoration:"none"}}>
+              <div key={restaurant.restaurant_name} className={"container__restaurant"}>
+                <NavLink to={`/restaurants/${restaurant.id}`} style={{textDecoration:"none"}}>
                   <div className={"restaurant"}>
                     <div className={"restaurant__entry-image"}>
                       <img src={restaurant.photo_url} alt={restaurant.restaurant_name}/>
