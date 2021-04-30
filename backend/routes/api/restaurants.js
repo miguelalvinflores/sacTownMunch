@@ -31,6 +31,17 @@ const validateNewRestaurant = [
   handleValidationErrors,
   ];
 
+router.post('/', validateNewRestaurant,
+  asyncHandler(async (req, res) => {
+    const {
+      restaurant_name,
+      address,
+      photo_url,
+      summary,
+      full_description
+    } = req.body;
+  }))
+
 router.get('/', asyncHandler(async function(_req, res) {
   const restaurants = await Restaurant.getTenMostRecent();
   // console.log("GET api/restaurant", restaurants)
