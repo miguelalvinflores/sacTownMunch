@@ -3,12 +3,12 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
 const { Restaurant } = require('../../db/models');
-const { Rating } = require('../../db/models/rating');
+const { Rating } = require('../../db/models/');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-const validateNewRestaurant = [
+const validateRestaurant = [
   check('restaurant_name')
     .exists({ checkFalsy: true })
     .isLength({ min: 3 , max: 60})
@@ -31,7 +31,7 @@ const validateNewRestaurant = [
   handleValidationErrors,
   ];
 
-router.post('/', validateNewRestaurant,
+router.post('/', validateRestaurant,
   asyncHandler(async (req, res) => {
     const restaurant = await Restaurant.create(req.body);
 
@@ -55,6 +55,28 @@ router.get('/:id/ratings', asyncHandler(async function(req, res) {
   const ratings = await Rating.ratingsByRestaurantId(req.params.id);
   return res.json(ratings);
 }));
+
+const validateRating = [
+  check('comment')
+    .exists({checkFalsy: true })
+    .isLength({min: 3 })
+    .withMessage('Plese provide a brief comment about why you decided to give your rating'),
+  check('rating')
+    .exists({checkFalsy: true })
+    .isInt({min:0, max: 5})
+    .withMessage('Plese provide a numeric rating from 0-5, where 0 is unlike to recommend and 5 is likely to recommend'),
+  check('date')
+    .exists({checkFalsy: true })
+    .withMessage('Your browser did not provide a date'),
+  handleValidationErrors,
+]
+
+router.post('/:id/ratings', validateRating,
+  asyncHandler( async (req, res) => {
+    const rating = await Rating.addRating(req.body,req.params.id);
+    return res.json(rating);
+  }
+));
 
 
 module.exports = router;

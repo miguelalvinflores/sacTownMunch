@@ -1,5 +1,5 @@
 'use strict';
-const { Rating } = require('./rating');
+
 
 module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define('Restaurant', {
@@ -40,14 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       currentRestaurant: {
         attributes: {}
       },
-      withRatings: {
-        include: [
-          {
-            required: false,
-            model: Rating
-          }
-        ]
-      }
     },
   });
   Restaurant.associate = function(models) {
@@ -66,5 +58,20 @@ module.exports = (sequelize, DataTypes) => {
       order: [['createdAt', 'DESC']]
     });
   }
+
+  Restaurant.update = async function(details) {
+    const id = detils.id;
+    delete details.id;
+    await Restaurant.update(
+      details,
+      {
+        where: { id },
+        returning: true,
+        plain: true,
+      }
+    )
+    return id;
+  }
+
   return Restaurant;
 };

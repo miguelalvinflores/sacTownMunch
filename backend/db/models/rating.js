@@ -43,5 +43,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  Rating.addRating = async function(details, restaurant_id) {
+    const rating = await Rating.create({
+      ...details,
+      restaurant_id,
+    });
+
+    return await Rating.findByPk(rating.id);
+  };
+
   return Rating;
 };
