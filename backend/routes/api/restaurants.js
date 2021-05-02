@@ -33,13 +33,9 @@ const validateNewRestaurant = [
 
 router.post('/', validateNewRestaurant,
   asyncHandler(async (req, res) => {
-    const {
-      restaurant_name,
-      address,
-      photo_url,
-      summary,
-      full_description
-    } = req.body;
+    const restaurant = await Restaurant.create(req.body);
+
+    return res.redirect(`${req.baseUrl}/${restaurant.id}`);
   }))
 
 router.get('/', asyncHandler(async function(_req, res) {

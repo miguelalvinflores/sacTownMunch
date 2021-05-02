@@ -1,4 +1,6 @@
 'use strict';
+const { Rating } = require('./rating');
+
 module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define('Restaurant', {
     restaurant_name: {
@@ -38,6 +40,14 @@ module.exports = (sequelize, DataTypes) => {
       currentRestaurant: {
         attributes: {}
       },
+      withRatings: {
+        include: [
+          {
+            required: false,
+            model: Rating
+          }
+        ]
+      }
     },
   });
   Restaurant.associate = function(models) {
