@@ -6,7 +6,7 @@ const { validateUpdate } = require('../validations/rating');
 
 const router = express.Router();
 
-router.put('./:id', validateUpdate,
+router.put('/:id', validateUpdate,
   asyncHandler(async function(req,res) {
     const rating = await Rating.updateRating(req.body);
     return res.json(rating);

@@ -38,6 +38,7 @@ router.get('/:id', asyncHandler(async function(req, res) {
 //get ratings with specified restaurant id
 router.get('/:id/ratings', asyncHandler(async function(req, res) {
   const ratings = await Rating.ratingsByRestaurantId(req.params.id);
+  console.log('rating at api handler', ratings);
   return res.json(ratings);
 }));
 

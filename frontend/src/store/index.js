@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   restaurant: restaurantReducer,
-  rating: ratingsReducer,
+  ratings: ratingsReducer,
 });
 
 let enhancer;

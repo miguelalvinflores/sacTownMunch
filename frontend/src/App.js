@@ -8,6 +8,7 @@ import SplashPage from './components/SplashPage';
 import RestaurantDetailsPage from './components/RestaurantDetailsPage';
 import * as sessionActions from './store/session';
 import Navigation from "./components/Navigation";
+import AboutPage from './components/AboutPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path='/restaurants/:restaurantId'>
           <RestaurantDetailsPage />
+        </Route>
+        <Route path='/about'>
+          <AboutPage />
         </Route>
         <Route path='/login'>
           <LoginFormPage />

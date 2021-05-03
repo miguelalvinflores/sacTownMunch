@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Rating.associate = function(models) {
-    Rating.belongsTo(models.User, {foreignKey: 'user_:id'})
+    Rating.belongsTo(models.User, {foreignKey: 'user_id'})
     Rating.belongsTo(models.Restaurant, {foreignKey: 'restaurant_id'})
   };
   Rating.ratingsByRestaurantId = async function(restaurant_id) {
-    return await Restaurant.findAll({
+    return await Rating.findAll({
       where: {
         restaurant_id,
       },

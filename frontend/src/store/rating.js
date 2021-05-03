@@ -26,10 +26,11 @@ const remove = (ratingId, restaurantId) => ({
 });
 
 export const getRatings = id => async (dispatch) => {
-  const res = await fetch(`api/restaurants/${id}/ratings`)
+  const res = await fetch(`/api/restaurants/${id}/ratings`)
 
   if (res.ok) {
     const ratings = await res.json();
+    console.log( 'ratings after fetch:',ratings)
     dispatch(load(ratings, id))
   }
 }
@@ -91,7 +92,7 @@ const ratingsReducer = (state = initialState, action) => {
     }
     case REMOVE_RATING: {
       const newState = {...state };
-      delete newState[action.ratingID];
+      delete newState[action.ratingId];
       return newState;
     }
 

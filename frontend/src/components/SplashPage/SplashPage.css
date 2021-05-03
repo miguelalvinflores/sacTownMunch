@@ -11,6 +11,7 @@ main {
   width: 80%;
   border-radius: 5px;
   align-items: center;
+  border: 2px solid #30475e;
 }
 .container__restaurant {
   display: inline-flex;
@@ -19,7 +20,10 @@ main {
   margin: 10px;
   padding: 10px;
   background-color: #e8e8e8;
-  border-radius: 10px;
+  border: 2px solid #30475e;
+  border-radius: .5em;
+  box-shadow: 2px 3px 4px #222831;
+
 }
 
 .restaurant {

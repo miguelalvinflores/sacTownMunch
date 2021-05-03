@@ -4,6 +4,7 @@ import { getRatings } from "../../store/rating";
 
 
 const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
+  console.log('restaurant at res ratings:', restaurant)
   const sessionUser = useSelector( state => state.session.user);
   const ratings = useSelector((state) => {
     if (!restaurant.ratings) return null;

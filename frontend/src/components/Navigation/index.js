@@ -25,6 +25,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <NavLink exact to='/'>Home</NavLink>
+      <NavLink to='/about'>About</NavLink>
       {isLoaded && sessionLinks}
 
     </nav>

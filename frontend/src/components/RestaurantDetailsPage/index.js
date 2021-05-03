@@ -12,6 +12,7 @@ import RestaurantRatings from '../RestaurantRatings';
 export default function RestaurantDetailsPage() {
   const { restaurantId } = useParams();
   const restaurant = useSelector(state => state.restaurant[restaurantId]);
+  console.log('restaurant:', restaurant)
   const sessionUser = useSelector( state => state.session.user);
   const dispatch = useDispatch();
   const [showEditRestaurantForm, setShowEditRestaurantForm] = useState(false);
