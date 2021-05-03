@@ -3,7 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const restaurantsRouter = require('./restaurants.js');
 const ratingsRouter = require('./ratings.js');
-
+// comment for posting to heroku
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
