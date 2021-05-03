@@ -2,6 +2,7 @@ main {
   display: flex;
   justify-content: center;
   top: 200px;
+  padding: 10px;
 }
 .container {
   align-self: center;

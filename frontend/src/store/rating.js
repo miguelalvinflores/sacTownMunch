@@ -33,17 +33,14 @@ export const getRatings = id => async (dispatch) => {
 
   if (res.ok) {
     const ratings = await res.json();
-    console.log( 'ratings after fetch:',ratings)
+    // console.log( 'ratings after fetch:',ratings)
     dispatch(load(ratings, id))
   }
 };
 
 export const createRating = (data, restaurantId) => async dispatch => {
-  const res = await csrfFetch(`api/restaurants/${restaurantId}/ratings`, {
+  const res = await csrfFetch(`/api/restaurants/${restaurantId}/ratings`, {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
     body: JSON.stringify(data),
   });
 
@@ -55,11 +52,8 @@ export const createRating = (data, restaurantId) => async dispatch => {
 };
 
 export const updateRating = data => async dispatch => {
-  const res = await csrfFetch(`/api/rating/${data.id}`, {
+  const res = await csrfFetch(`/api/ratings/${data.id}`, {
     method: 'put',
-    headers: {
-      'Content-Type': 'application.json',
-    },
     body: JSON.stringify(data),
   });
   if (res.ok) {

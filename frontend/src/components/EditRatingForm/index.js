@@ -10,11 +10,10 @@ const EditRatingForm = ({ ratingId, hideForm }) => {
   const [rating, setRating] = useState(review.rating);
 
   const updateComment = (e) => setComment(e.target.value);
-  const updateRating = (e) => setRating(e.targer.value);
+  const updateRating = (e) => setRating(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const payload = {
       ...review,
       comment,
@@ -41,11 +40,16 @@ const EditRatingForm = ({ ratingId, hideForm }) => {
           placeholder="Comment"
           value={comment}
           onChange={updateComment} />
-        <input
-          type="score"
-          placeholder="Score"
+        <select
           value={rating}
-          onChange={updateRating} />
+          onChange={updateRating}
+        >
+          <option>{"1"}</option>
+          <option>{"2"}</option>
+          <option>{"3"}</option>
+          <option>{"4"}</option>
+          <option>{"5"}</option>
+        </select>
         <button type="submit">Update Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>

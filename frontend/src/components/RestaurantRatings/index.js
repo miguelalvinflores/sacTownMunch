@@ -10,7 +10,7 @@ import './RestaurantRatings.css'
 
 
 const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
-  console.log('restaurant at res ratings:', restaurant)
+  // console.log('restaurant at res ratings:', restaurant)
   const sessionUser = useSelector( state => state.session.user);
   const ratings = useSelector((state) => {
     if (!restaurant.ratings) return null;
@@ -28,37 +28,39 @@ const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
     return null;
   }
 
-  return (
-    <div className='reviews-holder'>
-      <div className={showNewRatingForm ? 'fab is-hidden new-rating': 'fab new-rating'} onClick={() => setShowNewRatingForm(true)} >
-        <span aria-label="add" role="img" className="fab-symbol">➕ Add a Comment</span>
-      </div>
-      {ratings.map((rating) => (
-        <div key={rating.id} className='review'>
-          <div className='review__comment'>
-            {`Comment: ${rating.comment}`}
-          </div>
-          <div className='review__rating'>
-            {`Rating: ${rating.rating}/5`}
-          </div>
-          {(rating.user_id === sessionUser.id) && (
-          <div className="review-edit">
-            <button onClick={() => setEditRatingId(rating.id)}>
-              Edit
-            </button>
-          </div>
-        )}
-        </div>
-      ))}
-      {showNewRatingForm? (
-        <CreateRatingForm restaurant={restaurant} hideForm={() => setShowNewRatingForm(false)} />
-      ): (
 
-        <Route path="/restaurant/:restaurantId">
-          <RestaurantDetailsPage/>
-        </Route>
-      )}
-    </div>
+  return (
+    <main>
+      <div className='reviews-holder'>
+        <div className={showNewRatingForm ? 'fab is-hidden new-rating': 'fab new-rating'} onClick={() => setShowNewRatingForm(true)} >
+          <span aria-label="add" role="img" className="fab-symbol">➕ Add a Comment</span>
+        </div>
+        {ratings.map((rating) => (
+          <div key={rating.id} className='review'>
+            <div className='review__comment'>
+              {`Comment: ${rating.comment}`}
+            </div>
+            <div className='review__rating'>
+              {`Rating: ${rating.rating}/5`}
+            </div>
+            {(rating.user_id === sessionUser.id) && (
+              <div className="review-edit">
+              <button onClick={() => setEditRatingId(rating.id)}>
+                Edit
+              </button>
+            </div>
+          )}
+          </div>
+        ))}
+        {showNewRatingForm? (
+          <CreateRatingForm hideForm={() => setShowNewRatingForm(false)} restaurant={restaurant} />
+          ): (
+            <Route path="/restaurant/:restaurantId">
+            <RestaurantDetailsPage/>
+          </Route>
+        )}
+      </div>
+    </main>
   );
 };
 

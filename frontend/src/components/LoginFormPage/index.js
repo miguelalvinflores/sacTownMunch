@@ -8,7 +8,7 @@ import './LoginForm.css';
 export default function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  console.log("sessionUser after useSelector", !!sessionUser)
+  // console.log("sessionUser after useSelector", !!sessionUser)
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);

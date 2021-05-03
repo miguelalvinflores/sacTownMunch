@@ -32,3 +32,35 @@
 .fab:active span {
   transform: rotate(360deg);
 }
+main {
+  display: flex;
+  justify-content: center;
+  top: 200px;
+  padding: 10px;
+}
+.reviews-holder {
+  align-self: center;
+  left: 10% ;
+  display: flex;
+  flex-direction: column;
+  background-color: #f05454;
+  width: 80%;
+  border-radius: 5px;
+  align-items: center;
+  border: 2px solid #30475e;
+  padding: 10px;
+
+}
+
+.review{
+  width: 80%;
+  margin: 10px;
+  padding: 10px;
+  background-color: #e8e8e8;
+  border: 2px solid #30475e;
+  border-radius: .5em;
+  box-shadow: 2px 3px 2px #222831;
+}
+.review > div {
+  font-family: Oswald, 'Times New Roman', Times, serif;
+}
