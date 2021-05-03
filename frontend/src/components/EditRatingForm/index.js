@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { updateRating as updateReview } from '../../store/rating';
 
-const EditRatingForm = ({ ratingId, hideForm }) => {
+const EditRatingForm = ({ ratingId, setEditRatingId }) => {
   const review = useSelector(state => state.ratings[ratingId]);
   const dispatch = useDispatch();
 
@@ -23,13 +23,13 @@ const EditRatingForm = ({ ratingId, hideForm }) => {
     const updatedReview = await dispatch(updateReview(payload));
 
     if (updatedReview) {
-      hideForm();
+      setEditRatingId(null);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    hideForm();
+    setEditRatingId(null);
   };
 
   return (

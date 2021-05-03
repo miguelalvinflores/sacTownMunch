@@ -32,7 +32,7 @@ export default function RestaurantDetailsPage() {
 
   if (editRatingId) {
     content = (
-      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} hideform={() => setEditRatingId(null)} />
+      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} setEditRatingId={setEditRatingId} />
     )
   } else if (showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) {
     content = (
@@ -40,35 +40,43 @@ export default function RestaurantDetailsPage() {
     )
   } else {
     content = (
-      <div className='restaurant-detail'>
-        <div className='restaurant-detail__info'>
-
-        </div>
         <div className='restaurant-detail__reviews'>
           <h2>Reviews</h2>
           <RestaurantRatings restaurant={restaurant} setEditRatingId={setEditRatingId} />
         </div>
-
-      </div>
     )
   }
 
   return (
-    <div className="restaurant-detail">
-      <div className="restaurant-detail-image-background">
-        <div
-          className="restaurant-detail-image"
-          style={{ backgroundImage: `url('${restaurant.photo_url}')`}}
-        ></div>
-        <div>
+    <main>
+      <div className="restaurant-detail">
+        <div className="restaurant-detail-image" >
+          <img src={restaurant.photo_url} alt={restaurant.restaurant_name}/>
+        </div>
+        <div className='all-details'>
           <h1 className={`restaurant-detail__title`}>{restaurant.restaurant_name}</h1>
           {(!showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) && (
             <button onClick={() => setShowEditRestaurantForm(true)}>Edit Restaurant</button>
-          )}
+            )}
+          <div className='restaurant-detail'>
+            <div className={"restaurant__info"}>
+              <div className="restaurant__info--title">
+                <p className={"title__text"}>{restaurant.restaurant_name}</p>
+              </div>
+              <div className="restaurant__info--summary">
+                <p className={"summary__text"}>{restaurant.summary}</p>
+              </div>
+              <div className="restuarant__info--address">
+                <p className={"address__text"}>{restaurant.address}</p>
+              </div>
+              <div className="restuarant__info--description">
+                <p className={"address__text"}>{restaurant.full_description}</p>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
       {content}
-    </div>
+    </main>
   );
 }

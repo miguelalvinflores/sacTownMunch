@@ -131,7 +131,7 @@ export default function restaurantReducer(state = initialState, action) {
         ...state,
         [action.rating.restaurant_id]: {
           ...state[action.rating.restaurant_id],
-          ratings: [...state[action.rating.restaurant_id], action.rating.id],
+          ratings: [...state[action.rating.restaurant_id].ratings, action.rating.id],
         },
       };
     }

@@ -1,7 +1,47 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-detail {
+  display: flex;
+  justify-content: space-around;
+  height: fit-content;
+}
+
+
 .restaurant-detail-image {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 400px;
+  height: fit-content;
   transition: height 0.5s;
+  /* width: auto; */
+
+  /* width: 500px; */
+  /* height: auto; */
+  border-radius: 5px;
+}
+.restaurant-detail-image > img{
+  border-radius: 5px;
+}
+
+.restaurant-detail-image > img,
+.all-details {
+  height: 450px;
+}
+
+@media screen and (max-width: 1400px) {
+  .restaurant-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: fit-content;
+    align-items: center;
+  }
+  .restaurant-detail-image > img,
+  .all-details {
+    width: 100%;
+    height: auto;
+  }
 }

@@ -54,7 +54,7 @@ const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
         ))}
         {showNewRatingForm? (
           <CreateRatingForm hideForm={() => setShowNewRatingForm(false)} restaurant={restaurant} />
-          ): (
+        ): (
             <Route path="/restaurant/:restaurantId">
             <RestaurantDetailsPage/>
           </Route>

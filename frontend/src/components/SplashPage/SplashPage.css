@@ -97,12 +97,17 @@ main {
   .restaurant__entry-image {
     height: fit-content;
     width: 80%;
+    display: flex;
+    /* justify-content: left; */
+    margin-left: 0px;
+
   }
 
   .restaurant__entry-image > img {
     width: 100%;
     height: auto;
     border-radius: 5px;
+    padding-right: 5%;
   }
   .restaurant__info {
     width: 80%;
