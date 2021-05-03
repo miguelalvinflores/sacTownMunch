@@ -1,11 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
 
 const { Restaurant } = require('../../db/models');
 const { Rating } = require('../../db/models/');
 const {validateRating} = require('../validations/rating');
-const {validateRestaurant} = require('../validations/restaraurant');
+const {validateRestaurant, validateRestaurantUpdate} = require('../validations/restaraurant');
 const router = express.Router();
 
 router.post('/', validateRestaurant,
@@ -13,13 +12,21 @@ router.post('/', validateRestaurant,
     const restaurant = await Restaurant.create(req.body);
 
     return res.redirect(`${req.baseUrl}/${restaurant.id}`);
-  }))
+  })
+);
 
 router.get('/', asyncHandler(async function(_req, res) {
   const restaurants = await Restaurant.getTenMostRecent();
   // console.log("GET api/restaurant", restaurants)
   return res.json(restaurants);
-}))
+}));
+
+router.put('/:id',validateRestaurantUpdate,
+  asyncHandler(async function (req, res) {
+    const id = await Restaurant.update(req.body);
+    const restaurant = await Restaurant.findByPk(id);
+  })
+);
 
 // get restaurants
 router.get('/:id', asyncHandler(async function(req, res) {

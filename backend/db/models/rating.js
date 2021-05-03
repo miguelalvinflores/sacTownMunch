@@ -67,9 +67,11 @@ module.exports = (sequelize, DataTypes) => {
     return await Rating.findByPk(id);
   };
 
-  Rating.deleteRating(ratingId) {
+  Rating.deleteRating= async function(ratingId) {
     const rating = await Rating.findByPk(ratingId);
-    if (!item) throw new Error('Cannot find Rating');
+    if (!item) {
+      throw new Error('Cannot find Rating')
+    };
 
     await Rating.destroy({ where: {id: rating.id}});
     return rating.id;
