@@ -32,11 +32,12 @@
 .fab:active span {
   transform: rotate(360deg);
 }
-main {
+main.review-list-holder {
   display: flex;
   justify-content: center;
   top: 200px;
   padding: 10px;
+  width: 100%;
 }
 .reviews-holder {
   align-self: center;

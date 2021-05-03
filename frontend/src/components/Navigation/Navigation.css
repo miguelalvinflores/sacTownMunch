@@ -5,9 +5,29 @@ nav {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 10px;
+  border: 2px solid #222831;
 }
-nav > a{
-  margin: 10px;
+.nav-bar-items{
+  width: 50%;
+  display: flex;
+  margin-top: 0px;
+}
+.nav-bar-items > a{
+  margin-top: 30px;
+  text-decoration: none;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 700;
+  width: 60%;
+  color: #e8e8e8;
+}
+.nav-title {
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:#222831;
+  font-size: 40px;
+  margin: 0px;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  /* width: 80px;  */
 }
 .profile-container {
  background-color: #e8e8e8;

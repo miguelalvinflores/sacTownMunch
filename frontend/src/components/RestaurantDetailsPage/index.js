@@ -32,7 +32,7 @@ export default function RestaurantDetailsPage() {
 
   if (editRatingId) {
     content = (
-      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} setEditRatingId={setEditRatingId} />
+      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} set={setEditRatingId} />
     )
   } else if (showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) {
     content = (

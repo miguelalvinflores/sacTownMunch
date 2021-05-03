@@ -24,9 +24,12 @@ function Navigation({ isLoaded }) {
   }
   return (
     <nav>
-      <NavLink exact to='/'>Home</NavLink>
-      <NavLink to='/about'>About</NavLink>
-      {isLoaded && sessionLinks}
+      <h1 className='nav-title'>ST MUNCH</h1>
+      <div className='nav-bar-items'>
+        <NavLink exact to='/'>Home</NavLink>
+        <NavLink to='/about'>About</NavLink>
+        {isLoaded && sessionLinks}
+      </div>
 
     </nav>
   );

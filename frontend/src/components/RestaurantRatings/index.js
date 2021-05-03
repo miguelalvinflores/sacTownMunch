@@ -30,11 +30,13 @@ const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
 
 
   return (
-    <main>
+    <main className='review-list-holder'>
       <div className='reviews-holder'>
-        <div className={showNewRatingForm ? 'fab is-hidden new-rating': 'fab new-rating'} onClick={() => setShowNewRatingForm(true)} >
-          <span aria-label="add" role="img" className="fab-symbol">➕ Add a Comment</span>
-        </div>
+        {(sessionUser) && (
+          <div className={showNewRatingForm ? 'fab is-hidden new-rating': 'fab new-rating'} onClick={() => setShowNewRatingForm(true)} >
+            <span aria-label="add" role="img" className="fab-symbol">➕ Add a Comment</span>
+          </div>
+        )}
         {ratings.map((rating) => (
           <div key={rating.id} className='review'>
             <div className='review__comment'>

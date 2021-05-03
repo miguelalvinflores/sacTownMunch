@@ -30,6 +30,7 @@ export default function LoginFormPage() {
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
+        <h2 className='login-form-title'>Log In:</h2>
         <ul>
             {errors.map((error, errId) => <li key={errId}>{error}</li>)}
         </ul>

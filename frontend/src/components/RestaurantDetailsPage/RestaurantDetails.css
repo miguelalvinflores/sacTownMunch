@@ -30,6 +30,12 @@ main {
 .all-details {
   height: 450px;
 }
+.restaurant-detail__reviews {
+  width: 100%;
+}
+.restaurant-detail__reviews > h2 {
+  margin-left:125px;
+}
 
 @media screen and (max-width: 1400px) {
   .restaurant-detail {

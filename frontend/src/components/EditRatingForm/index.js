@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { updateRating as updateReview } from '../../store/rating';
 
+import './EditRatingForm.css';
+
 const EditRatingForm = ({ ratingId, setEditRatingId }) => {
   const review = useSelector(state => state.ratings[ratingId]);
   const dispatch = useDispatch();
@@ -33,27 +35,36 @@ const EditRatingForm = ({ ratingId, setEditRatingId }) => {
   };
 
   return (
-    <section className="edit-rating-form-holder" >
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Comment"
-          value={comment}
-          onChange={updateComment} />
-        <select
-          value={rating}
-          onChange={updateRating}
-        >
-          <option>{"1"}</option>
-          <option>{"2"}</option>
-          <option>{"3"}</option>
-          <option>{"4"}</option>
-          <option>{"5"}</option>
-        </select>
-        <button type="submit">Update Review</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </form>
-    </section>
+    <main>
+      <section className="edit-rating-form-holder" >
+        <h2 className='edit-review-title'>Edit Your Review</h2>
+        <form className='edit-review-form' onSubmit={handleSubmit}>
+          Comment:
+          <textarea
+            type="textarea"
+            rows={5}
+            cols={60}
+            placeholder="Comment"
+            value={comment}
+            onChange={updateComment} />
+          Rating:
+          <select
+            value={rating}
+            onChange={updateRating}
+            >
+            <option>{"1"}</option>
+            <option>{"2"}</option>
+            <option>{"3"}</option>
+            <option>{"4"}</option>
+            <option>{"5"}</option>
+          </select>
+          <div className='edit-review-btn-holder' >
+            <button type="submit">Update Review</button>
+            <button type="button" onClick={handleCancelClick}>Cancel</button>
+          </div>
+        </form>
+      </section>
+    </main>
   );
 };
 

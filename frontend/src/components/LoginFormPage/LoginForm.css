@@ -5,12 +5,18 @@
 
 
 }
-
+.login-form-title {
+  color: #30475e
+}
 .login-form {
   width:60%;
   border-radius: 10px;
-  background-color: #034c81;
+  background-color: #e8e8e8;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px;
+}
+.restaurant__info > div > p {
+  margin: 5px;
 }
