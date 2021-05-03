@@ -44,11 +44,38 @@ export const createRating = (data, restaurantId) => async dispatch => {
   });
 
   if(res.ok) {
-    const item = await res.json();
-    dispatch(add(item));
-    return item;
+    const rating = await res.json();
+    dispatch(add(rating));
+    return rating;
   }
 };
+
+export const updateRating = data => async dispatch => {
+  const res = await fetch(`/api/rating/${data.id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application.json',
+    },
+    body: JSON.stringify(data),
+  });
+  if (res.ok) {
+    const rating = await res.json();
+    dispatch(update(rating));
+    return rating;
+  }
+};
+
+export const deleteRating = ratingId => async dispatch => {
+  const res = await fetch(`/api/ratings/${ratingId}`, {
+    method: 'delete',
+  });
+
+  if (res.ok) {
+    const rating = await res.json();
+    dispatch(remove(rating.id, rating.restaurant_id));
+  }
+};
+
 const initialState = {};
 const ratingsReducer = (state = initialState, action) => {
   switch (action.type) {

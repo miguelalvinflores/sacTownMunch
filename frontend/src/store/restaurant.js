@@ -1,3 +1,5 @@
+import { LOAD_RATINGS, REMOVE_RATING, ADD_RATING } from './rating';
+
 const LOAD = "restaurant/LOAD";
 const ADD_ONE = "restaurant/ADD_ONE";
 
@@ -10,6 +12,22 @@ const addOneRestaurant = restaurant => ({
   type: ADD_ONE,
   restaurant,
 })
+
+export const createRestaurant = data => async dispatch => {
+  const res = await fetch(`/api/restaurants`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if(res.ok) {
+    const restaurant = await res.json()
+    dispatch(addOneRestaurant(restaurant));
+    return restaurant;
+  }
+};
 
 export const getRestaurants = () => async dispatch => {
   const res = await fetch(`/api/restaurants`);
@@ -31,7 +49,6 @@ export const getOneRestaurant = id => async dispatch => {
 
 const initialState = {
   list: [],
-  types: []
 };
 
 const sortList = (list) => {
@@ -70,6 +87,35 @@ export default function restaurantReducer(state = initialState, action) {
         ...state[action.restaurant.id],
         ...action.restaurant,
         }
+      };
+    }
+    case LOAD_RATINGS: {
+      return {
+        ...state,
+        [action.restaurantId]: {
+          ...state[action.restaurantId],
+          ratings: action.ratings.map(rating => rating.id),
+        }
+      };
+    }
+    case REMOVE_RATING: {
+      return {
+        ...state,
+        [action.restaurantId]: {
+          ...state[action.restaurantId],
+          ratings: state[action.restaurantId].filter(
+            (rating) => rating.id !== action.itemId
+          ),
+        },
+      };
+    }
+    case ADD_RATING: {
+      return {
+        ...state,
+        [action.rating.restaurant_id]: {
+          ...state[action.rating.restaurant_id],
+          ratings: [...state[action.rating.restaurant_id], action.rating.id],
+        },
       };
     }
     default:
