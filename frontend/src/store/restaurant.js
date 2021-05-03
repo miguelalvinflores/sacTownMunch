@@ -29,6 +29,22 @@ export const createRestaurant = data => async dispatch => {
   }
 };
 
+export const updateRestaunt = data => async dispatch => {
+  const res = await fetch(`/api/restaurants/${data.id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if(res.ok) {
+    const restaurant = await res.json();
+    dispatch(addOneRestaurant(restaurant));
+    return restaurant;
+  }
+}
+
 export const getRestaurants = () => async dispatch => {
   const res = await fetch(`/api/restaurants`);
   // console.log("fetch api/restaurant", res)

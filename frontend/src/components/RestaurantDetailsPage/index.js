@@ -5,7 +5,8 @@ import * as restaurantActions from '../../store/restaurant';
 
 import './RestaurantDetails.css';
 
-import EditRatingForm from '../'
+import EditRatingForm from '../EditRatingForm'
+import EditRestaurantForm from '../EditRestaurantForm'
 import RestaurantRatings from '../RestaurantRatings';
 
 export default function RestaurantDetailsPage() {
@@ -34,7 +35,7 @@ export default function RestaurantDetailsPage() {
     )
   } else if (showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) {
     content = (
-      <EditRatingForm restaurant={restaurant} hideform={() => setShowEditRestaurantForm(false)} />
+      <EditRestaurantForm restaurant={restaurant} hideform={() => setShowEditRestaurantForm(false)} />
     )
   } else {
     content = (
@@ -60,11 +61,13 @@ export default function RestaurantDetailsPage() {
         ></div>
         <div>
           <h1 className={`restaurant-detail__title`}>{restaurant.restaurant_name}</h1>
+          {(!showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) && (
+            <button onClick={() => setShowEditRestaurantForm(true)}>Edit Restaurant</button>
+          )}
         </div>
-        <div className={"restaurant__entry-image"}>
-          <img src={restaurant.photo_url} alt={restaurant.restaurant_name}/>
-        </div>
+
       </div>
+      {content}
     </div>
   );
 }

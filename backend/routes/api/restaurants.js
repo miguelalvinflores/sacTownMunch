@@ -25,6 +25,7 @@ router.put('/:id',validateRestaurantUpdate,
   asyncHandler(async function (req, res) {
     const id = await Restaurant.update(req.body);
     const restaurant = await Restaurant.findByPk(id);
+    return res.json(restaurant);
   })
 );
 
