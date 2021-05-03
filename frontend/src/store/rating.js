@@ -1,3 +1,6 @@
+import { csrfFetch } from './csrf';
+
+
 export const LOAD_RATINGS = 'ratings/LOAD_RATINGS';
 export const REMOVE_RATING = 'ratings/REMOVE_RATING';
 export const UPDATE_RATING = 'ratings/UPDATE_RATING';
@@ -33,11 +36,11 @@ export const getRatings = id => async (dispatch) => {
     console.log( 'ratings after fetch:',ratings)
     dispatch(load(ratings, id))
   }
-}
+};
 
 export const createRating = (data, restaurantId) => async dispatch => {
-  const res = await fetch(`api/restaurants/${restaurantId}/ratings`, {
-    method: 'post',
+  const res = await csrfFetch(`api/restaurants/${restaurantId}/ratings`, {
+    method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
@@ -52,7 +55,7 @@ export const createRating = (data, restaurantId) => async dispatch => {
 };
 
 export const updateRating = data => async dispatch => {
-  const res = await fetch(`/api/rating/${data.id}`, {
+  const res = await csrfFetch(`/api/rating/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application.json',
@@ -67,7 +70,7 @@ export const updateRating = data => async dispatch => {
 };
 
 export const deleteRating = ratingId => async dispatch => {
-  const res = await fetch(`/api/ratings/${ratingId}`, {
+  const res = await csrfFetch(`/api/ratings/${ratingId}`, {
     method: 'delete',
   });
 

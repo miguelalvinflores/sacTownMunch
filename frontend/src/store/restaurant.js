@@ -1,4 +1,5 @@
 import { LOAD_RATINGS, REMOVE_RATING, ADD_RATING } from './rating';
+import { csrfFetch } from './csrf';
 
 const LOAD = "restaurant/LOAD";
 const ADD_ONE = "restaurant/ADD_ONE";
@@ -14,7 +15,7 @@ const addOneRestaurant = restaurant => ({
 })
 
 export const createRestaurant = data => async dispatch => {
-  const res = await fetch(`/api/restaurants`, {
+  const res = await csrfFetch(`/api/restaurants`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export const createRestaurant = data => async dispatch => {
 };
 
 export const updateRestaunt = data => async dispatch => {
-  const res = await fetch(`/api/restaurants/${data.id}`, {
+  const res = await csrfFetch(`/api/restaurants/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
