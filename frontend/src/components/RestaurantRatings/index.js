@@ -45,13 +45,14 @@ const RestaurantRatings = ({ restaurant, setEditRatingId }) => {
             <div className='review__rating'>
               {`Rating: ${rating.rating}/5`}
             </div>
-            {(rating.user_id === sessionUser.id) && (
+            { (sessionUser !==undefined) &&
+            ((rating.user_id === sessionUser.id) && (
               <div className="review-edit">
               <button onClick={() => setEditRatingId(rating.id)}>
                 Edit
               </button>
             </div>
-          )}
+          ))}
           </div>
         ))}
         {showNewRatingForm? (

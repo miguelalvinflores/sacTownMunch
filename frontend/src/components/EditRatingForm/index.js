@@ -4,7 +4,7 @@ import { updateRating as updateReview } from '../../store/rating';
 
 import './EditRatingForm.css';
 
-const EditRatingForm = ({ ratingId, setEditRatingId }) => {
+const EditRatingForm = ({ ratingId, set }) => {
   const review = useSelector(state => state.ratings[ratingId]);
   const dispatch = useDispatch();
 
@@ -25,13 +25,13 @@ const EditRatingForm = ({ ratingId, setEditRatingId }) => {
     const updatedReview = await dispatch(updateReview(payload));
 
     if (updatedReview) {
-      setEditRatingId(null);
+      set(null);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    setEditRatingId(null);
+    set(null);
   };
 
   return (

@@ -28,11 +28,15 @@ export default function RestaurantDetailsPage() {
     return null;
   }
 
+  const handleEditRatingCancel = () => {
+    setEditRatingId(null)
+  }
+
   let content = null;
 
   if (editRatingId) {
     content = (
-      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} set={setEditRatingId} />
+      <EditRatingForm restaurant={restaurant} ratingId={editRatingId} set={handleEditRatingCancel} />
     )
   } else if (showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) {
     content = (
@@ -55,9 +59,14 @@ export default function RestaurantDetailsPage() {
         </div>
         <div className='all-details'>
           <h1 className={`restaurant-detail__title`}>{restaurant.restaurant_name}</h1>
-          {(!showEditRestaurantForm && (restaurant.owner_id === sessionUser.id)) && (
-            <button onClick={() => setShowEditRestaurantForm(true)}>Edit Restaurant</button>
-            )}
+          {(!showEditRestaurantForm && (sessionUser !== undefined)) && (
+              ((restaurant.owner_id === sessionUser.id) &&(
+
+                <button onClick={() => setShowEditRestaurantForm(true)}>Edit Restaurant</button>
+                )
+          )
+            )
+          }
           <div className='restaurant-detail'>
             <div className={"restaurant__info"}>
               <div className="restaurant__info--title">
