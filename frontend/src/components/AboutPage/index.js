@@ -1,5 +1,5 @@
 import './AboutPage.css';
-
+// comment
 export default function AboutPage() {
   return (
     <div className='about-wrapper'>
